@@ -17,14 +17,6 @@ The program reads the list of HTTP endpoints from a YAML file, performs health c
 ## Requirements
 
 - **Python 3.x**: Ensure you have Python 3 or later installed.
-- **Requests**: Python package to make HTTP requests. You can install it using:
-  ```bash
-  pip install requests
-  ```
-- **PyYAML**: Python package for parsing YAML files. Install it using:
-  ```bash
-  pip install pyyaml
-  ```
 
 ## Setup and Installation
 
@@ -42,7 +34,7 @@ cd take-home-exercise
 Install the necessary Python libraries:
 
 ```bash
-pip install requests pyyaml
+pip install -r requirements.txt
 ```
 
 ### 3. Create a YAML File for Endpoints
@@ -76,32 +68,17 @@ The program will start monitoring the endpoints, checking their health every 15 
 ## Example Output
 
 ```bash
-Monitoring endpoints from: sample.yaml
 
-Availability after 15 seconds:
-Domain: fetch.com, Availability: 100.00%
-Domain: fetchrewards.com, Availability: 66.67%
+fetch.com has 100.00% availability percentage
+fetch.com has 100.00% availability percentage
+fetch.com has 66.67% availability percentage
+www.fetchrewards.com has 100.00% availability percentage
+{'fetch.com': {'total': 3, 'success': 2}, 'www.fetchrewards.com': {'total': 1, 'success': 1}}
 
-Availability after 15 seconds:
-Domain: fetch.com, Availability: 100.00%
-Domain: fetchrewards.com, Availability: 66.67%
+fetch.com has 75.00% availability percentage
+fetch.com has 80.00% availability percentage
+fetch.com has 66.67% availability percentage
+www.fetchrewards.com has 100.00% availability percentage
+{'fetch.com': {'total': 6, 'success': 4}, 'www.fetchrewards.com': {'total': 2, 'success': 2}}
 ```
 
-## Parameters
-
-- **Interval**: The program checks the health of the endpoints every 15 seconds. You can modify this interval by adjusting the `time` parameter in the `main()` function.
-- **Availability Calculation**: Availability for each domain is calculated as the ratio of successful requests to the total requests made (successful/total * 100).
-
-## Contributing
-
-If you'd like to contribute to this project:
-
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature-branch`).
-3. Commit your changes (`git commit -am 'Add new feature'`).
-4. Push the branch (`git push origin feature-branch`).
-5. Create a pull request.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
