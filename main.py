@@ -39,6 +39,11 @@ def make_requests(item):
 
     print(f"Response latency: {latency:.2f} ms")
 
+    if latency <= 500.00 and response.status_code == 200:
+        print("Domain is up")
+    else:
+        print("Domain is down")
+
 def main():
     data = load_yaml('sample.yaml')
     while True:
