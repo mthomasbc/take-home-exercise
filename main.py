@@ -11,8 +11,8 @@ def load_yaml(file_path):
 def make_requests(item):
     url = item.get("url")
     method = item.get("method","GET")
-    body = item.get("body")
-    headers = item.get("headers")
+    body = item.get("body", None)
+    headers = item.get("headers", {})
 
     if method == "GET":
         response = requests.get(url, headers=headers)
@@ -22,7 +22,7 @@ def make_requests(item):
         print("There is no method")
 
     print(f"Response from {url}: {response.status_code}")
-    
+
 def main():
     data = load_yaml('sample.yaml')
     for item in data:
