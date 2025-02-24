@@ -33,8 +33,8 @@ The program reads the list of HTTP endpoints from a YAML file, performs health c
 You can either clone the repository or download the script files.
 
 ```bash
-git clone https://github.com/yourusername/endpoint-health-monitor.git
-cd endpoint-health-monitor
+git clone https://github.com/mthomasbc/take-home-exercise.git
+cd take-home-exercise
 ```
 
 ### 2. Install Required Dependencies
@@ -47,12 +47,13 @@ pip install requests pyyaml
 
 ### 3. Create a YAML File for Endpoints
 
-Create a YAML file (e.g., `endpoints.yaml`) with the list of HTTP endpoints to monitor. The format should look like this:
+Create a YAML file (e.g., `sample.yaml`) with the list of HTTP endpoints to monitor. The format should look like this:
 
 ```yaml
-- "http://example.com"
-- "http://example.org"
-- "http://example.net"
+- "https://fetch.com"
+- "https://fetch.com/careers"
+- "https://fetch.com/some/post/endpoint"
+- "https://fetchrewards.com/"
 ```
 
 ### 4. Run the Program
@@ -60,7 +61,7 @@ Create a YAML file (e.g., `endpoints.yaml`) with the list of HTTP endpoints to m
 Run the program by providing the path to the YAML file containing the list of HTTP endpoints.
 
 ```bash
-python monitor.py endpoints.yaml
+python main.py 
 ```
 
 The program will start monitoring the endpoints, checking their health every 15 seconds, and logging the availability status.
@@ -75,22 +76,20 @@ The program will start monitoring the endpoints, checking their health every 15 
 ## Example Output
 
 ```bash
-Monitoring endpoints from: endpoints.yaml
+Monitoring endpoints from: sample.yaml
 
 Availability after 15 seconds:
-Domain: example.com, Availability: 100.00%
-Domain: example.org, Availability: 66.67%
-Domain: example.net, Availability: 50.00%
+Domain: fetch.com, Availability: 100.00%
+Domain: fetchrewards.com, Availability: 66.67%
 
 Availability after 15 seconds:
-Domain: example.com, Availability: 100.00%
-Domain: example.org, Availability: 75.00%
-Domain: example.net, Availability: 66.67%
+Domain: fetch.com, Availability: 100.00%
+Domain: fetchrewards.com, Availability: 66.67%
 ```
 
 ## Parameters
 
-- **Interval**: The program checks the health of the endpoints every 15 seconds. You can modify this interval by adjusting the `interval` parameter in the `track_availability()` function.
+- **Interval**: The program checks the health of the endpoints every 15 seconds. You can modify this interval by adjusting the `time` parameter in the `main()` function.
 - **Availability Calculation**: Availability for each domain is calculated as the ratio of successful requests to the total requests made (successful/total * 100).
 
 ## Contributing
