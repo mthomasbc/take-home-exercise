@@ -1,6 +1,7 @@
 import yaml
 import requests
 import time
+from urllib.parse import urlparse
 
 def load_yaml(file_path):
     with open(file_path, 'r') as file:
@@ -9,12 +10,19 @@ def load_yaml(file_path):
             print("Warning: YAML file is empty or not properly formatted.")
         return data
 
+def get_domain(url):
+    parsed_url = urlparse(url)
+    domain = parsed_url.netloc
+    return domain
+
 def make_requests(item):
     url = item.get("url")
     method = item.get("method","GET")
     body = item.get("body", None)
     headers = item.get("headers", {})
 
+    print(get_domain(url))
+    
     if method == "GET":
         response = requests.get(url, headers=headers)
     elif method == "POST":
