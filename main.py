@@ -31,27 +31,32 @@ def make_requests(item):
     else:
         print("There is no method")
 
-    print(f"Response from {url}: {response.status_code}")
-
     end_time = time.time()
     latency = (end_time - start_time) * 1000
 
-    print(f"Response latency: {latency:.2f} ms")
-
     if latency <= 500.00 and 200 <= response.status_code < 300:
         success = True
-        print("Domain is up")
-    else:
-        print("Domain is down")
     
     return get_domain(url), success
 
 def main():
     data = load_yaml('sample.yaml')
+    domain_stats = {}
+
     while True:
         for item in data:
             domain, success = make_requests(item)
-            print(f"{domain} is {success}")
+            if domain not in domain_stats:
+                domain_stats[domain] = {"total": 0, "success": 0}
+
+            domain_stats[domain]["total"] += 1
+            if success:
+                domain_stats[domain]["success"] += 1
+
+            availability = (domain_stats[domain]["success"] / domain_stats[domain]["total"]) * 100
+            print(f"{domain} has {availability:.2f}% availability percentage")
+
+        print(domain_stats)
         
         time.sleep(15)
 
