@@ -20,8 +20,7 @@ def make_requests(item):
     method = item.get("method","GET")
     body = item.get("body", None)
     headers = item.get("headers", {})
-
-    print(get_domain(url))
+    success = False
 
     start_time = time.time()
 
@@ -39,16 +38,20 @@ def make_requests(item):
 
     print(f"Response latency: {latency:.2f} ms")
 
-    if latency <= 500.00 and response.status_code == 200:
+    if latency <= 500.00 and 200 <= response.status_code < 300:
+        success = True
         print("Domain is up")
     else:
         print("Domain is down")
+    
+    return get_domain(url), success
 
 def main():
     data = load_yaml('sample.yaml')
     while True:
         for item in data:
-            make_requests(item)
+            domain, success = make_requests(item)
+            print(f"{domain} is {success}")
         
         time.sleep(15)
 
