@@ -1,5 +1,6 @@
 import yaml
 import requests
+import time
 
 def load_yaml(file_path):
     with open(file_path, 'r') as file:
@@ -25,8 +26,11 @@ def make_requests(item):
 
 def main():
     data = load_yaml('sample.yaml')
-    for item in data:
-        print(item)
+    while True:
+        for item in data:
+            make_requests(item)
+        
+        time.sleep(15)
 
 if __name__ == '__main__':
     main()
