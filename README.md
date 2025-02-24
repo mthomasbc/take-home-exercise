@@ -37,18 +37,7 @@ Install the necessary Python libraries:
 pip install -r requirements.txt
 ```
 
-### 3. Create a YAML File for Endpoints
-
-Create a YAML file (e.g., `sample.yaml`) with the list of HTTP endpoints to monitor. The format should look like this:
-
-```yaml
-- "https://fetch.com"
-- "https://fetch.com/careers"
-- "https://fetch.com/some/post/endpoint"
-- "https://fetchrewards.com/"
-```
-
-### 4. Run the Program
+### 3. Run the Program
 
 Run the program by providing the path to the YAML file containing the list of HTTP endpoints.
 
