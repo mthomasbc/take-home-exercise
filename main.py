@@ -34,14 +34,11 @@ def make_requests(item):
 
     print(f"Response from {url}: {response.status_code}")
 
-    if response.status_code != 200 and response:
-        print(f"Error: {response.text}")
-
     end_time = time.time()
     latency = (end_time - start_time) * 1000
 
     print(f"Response latency: {latency:.2f} ms")
-    
+
 def main():
     data = load_yaml('sample.yaml')
     while True:
