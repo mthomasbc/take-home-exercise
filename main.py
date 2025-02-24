@@ -1,4 +1,5 @@
 import yaml
+import requests
 
 def load_yaml(file_path):
     with open(file_path, 'r') as file:
@@ -7,6 +8,21 @@ def load_yaml(file_path):
             print("Warning: YAML file is empty or not properly formatted.")
         return data
 
+def make_requests(item):
+    url = item.get("url")
+    method = item.get("method","GET")
+    body = item.get("body")
+    headers = item.get("headers")
+
+    if method == "GET":
+        response = requests.get(url, headers=headers)
+    elif method == "POST":
+        response = requests.post(url, data=body, headers=headers)
+    else:
+        print("There is no method")
+
+    print(f"Response from {url}: {response.status_code}")
+    
 def main():
     data = load_yaml('sample.yaml')
     for item in data:
